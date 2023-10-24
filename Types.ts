@@ -5,8 +5,13 @@
     title: string;
   };
 
-  export type Task = {
+ type Task = {
     id: Id;
     columnId: Id;
     content: string;
   };
+  type Context={
+    ShowEditModel:boolean,
+    ShowPreviewModel:boolean,
+
+}
