@@ -40,21 +40,16 @@ const tasks:Task[]=[
   content:"testing task"
 },
 ]
-const context=createContext({
+const context=createContext<Context>({
   ShowEditModel:false,
   ShowPreviewModel:false,
   AllColumns:columns,
-  AllTasks:tasks
+  AllTasks:tasks,
+  setAllTasks:()=>{},
+  addTask:(x,y)=>{},
+  deleteTask:(x)=>{}
 })
   
-  
-type Context={
-    ShowEditModel:boolean,
-    ShowPreviewModel:boolean,
-    AllColumns:Column[],
-    AllTasks:Task[]
-}
-
   type PropsWrapper = {
     children:JSX.Element
   }
@@ -67,7 +62,20 @@ type Context={
     const [ShowPreviewModel, setShowPreviewModel] = useState(false)
    const [AllColumns, setAllColumns] = useState<Column[]>(columns)
    const [AllTasks, setAllTasks] = useState<Task[]>(tasks)
-    const sharedState={ShowEditModel,ShowPreviewModel,AllColumns,AllTasks}
+   function addTask(ColumnId:string,Content:string){
+    const newTask={
+    id:(Math.floor(Math.random() * 10001)* Date.now()).toString(),
+    columnId: ColumnId,
+    content:Content
+  }
+    setAllTasks((tasks)=>([...tasks,newTask]))
+   }
+   function deleteTask(id:string){
+    setAllTasks((tasks)=>{
+     return tasks.filter((t)=>t.id!=id)
+    })
+   }
+    const sharedState={ShowEditModel,ShowPreviewModel,AllColumns,AllTasks,setAllTasks,addTask,deleteTask}
     return (
       <context.Provider value={sharedState} >{children}</context.Provider>
     )

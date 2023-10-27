@@ -105,15 +105,7 @@ export default function Home() {
     id: "todo",
     title: "Todo",
   });
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
-  function onDragStart(event: DragStartEvent) {
-    if (event.active.data.current?.type === "Column") {
-      setActiveColumn(event.active.data.current.column);
-      return;
-    }
-   }
-  function onDragEnd() { }
-  function onDragOver() { }
+ 
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -123,9 +115,11 @@ export default function Home() {
   );
   return (
     <main>
+      <ContextWrapper>
         <KanbanComponent/>
         {/* <EditModal/> */}
         {/* <ShowContentModel/> */}
+      </ContextWrapper>
 
     </main>
   )
