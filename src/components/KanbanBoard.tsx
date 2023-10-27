@@ -30,14 +30,6 @@ const KanbanBoard = (props: Props) => {
         distance: 3,
       }
     }),
-    useSensor(TouchSensor,{
-      activationConstraint:{
-        distance: 3
-      }
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
   );
 
   const { AllColumns, AllTasks,setAllTasks } = useContextValue();

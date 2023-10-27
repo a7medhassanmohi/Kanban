@@ -12,13 +12,6 @@ import {
 export default function Home() {
   const {ShowEditModel}=useContextValue()
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 10,
-      },
-    })
-  );
   return (
     <main>
       
