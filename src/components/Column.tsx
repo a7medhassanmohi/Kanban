@@ -3,7 +3,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import Task from "./Task";
 import { useContextValue } from "@/Context";
 import Droppable from "./Droppable";
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import {CSS} from '@dnd-kit/utilities';
 
 type Props = {
@@ -47,6 +47,7 @@ const Column = ({title,id}: Props) => {
            flex-col
            overflow-y-auto
            relative
+      
            "
            >
              <div
@@ -75,7 +76,7 @@ const Column = ({title,id}: Props) => {
                </div>
              </div>
       
-             <SortableContext items={TasksId}>
+             <SortableContext items={TasksId} strategy={verticalListSortingStrategy} >
             {ColumnTasks.map((task)=>
             <Droppable data={task} key={task.id}>
               <Task  {...task}/>

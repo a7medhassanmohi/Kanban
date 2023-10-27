@@ -23,6 +23,8 @@ data:Task | Column
   const style = {
     transform: CSS.Translate.toString(transform),
     opacity: isDragging ? 0.5 : 1,
+    transition,
+    touchAction:"none"
   } 
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes}>

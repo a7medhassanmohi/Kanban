@@ -6,7 +6,7 @@ type Props = {}
 
 const KanbanComponent = (props: Props) => {
   return (
-    <div className='min-h-screen overflow-hidden container mx-auto py-5' >
+    <div className='min-h-screen overflow-hidden container mx-auto py-5 ' >
       <KanbanBoard/>
     </div>
     

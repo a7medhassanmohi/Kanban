@@ -17,6 +17,7 @@ import {
   defaultDropAnimation,
   useDroppable,
   TouchSensor,
+  MouseSensor,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates, arrayMove } from "@dnd-kit/sortable";
 import Task from "./Task";
@@ -25,11 +26,18 @@ type Props = {};
 const KanbanBoard = (props: Props) => {
   const [activeTask, setActiveTask] = useState<Task | null>(null);
   const sensors = useSensors(
-    useSensor(PointerSensor,{
-      activationConstraint:{
-        distance: 3,
-      }
+    useSensor(MouseSensor,{
+activationConstraint:{
+  distance:8
+}
     }),
+    useSensor(TouchSensor,{
+      activationConstraint:{
+        delay:300,
+        tolerance:8
+      }
+          }),
+    
   );
 
   const { AllColumns, AllTasks,setAllTasks } = useContextValue();

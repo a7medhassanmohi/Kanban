@@ -13,7 +13,7 @@ export default function Home() {
   const {ShowEditModel}=useContextValue()
 
   return (
-    <main>
+    <main className=''>
         <>
         <KanbanComponent/>
        {ShowEditModel && <EditModal/>}

@@ -28,7 +28,7 @@ const Task = (props: Props) => {
     border-columnBackgroundColor
     border-2
     flex  items-center
-   touch-none
+   
     "
     >
       <div className="content w-full break-words overflow-x-hidden  whitespace-break-spaces ">
