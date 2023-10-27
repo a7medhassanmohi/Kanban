@@ -12,12 +12,12 @@ type Props = {
 };
 
 const Task = (props: Props) => {
-  const {deleteTask}=useContextValue()
+  const {deleteTask,EditTask}=useContextValue()
  
   return (
     <div
       className="
-    h-[80px]
+   min-h-fit
     bg-TaskBackgroundColor
     text-md
     cursor-grab
@@ -31,12 +31,17 @@ const Task = (props: Props) => {
    
     "
     >
-      <div className="content flex-1">{props.content}</div>
+      <div className="content w-full break-words overflow-x-hidden  whitespace-break-spaces ">
+        <p>
+
+        {props.content}
+        </p>
+        </div>
       <div className="action  flex items-center gap-1">
         <div className="delete opacity-70 hover:opacity-100" onClick={()=>deleteTask(props.id.toString())}>
           <BsTrash3 size={15} />
         </div>
-        <div className="edit opacity-70 hover:opacity-100" >
+        <div className="edit opacity-70 hover:opacity-100" onClick={()=>EditTask(props.id.toString(),"")} >
           <AiOutlineEdit size={15} />
         </div>
       </div>

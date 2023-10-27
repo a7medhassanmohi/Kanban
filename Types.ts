@@ -15,7 +15,11 @@
     ShowPreviewModel: boolean;
     AllColumns: Column[];
     AllTasks: Task[];
+    ActiveEditTaskId: string | null;
     setAllTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-    addTask:(x: string,z: string)=>void
-    deleteTask:(x: string)=>void
+    setShowEditModel: React.Dispatch<React.SetStateAction<boolean>>;
+    setActiveEditTaskId: React.Dispatch<React.SetStateAction<string | null>>;
+    addTask:(x: string,z: string)=>void,
+    deleteTask:(x: string)=>void,
+    EditTask:(x: string,y:string)=>void
   }

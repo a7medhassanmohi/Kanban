@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { ReactNode, createContext, useContext, useState } from 'react'
 
 const columns: Column[]=[
   {
@@ -45,20 +45,21 @@ const context=createContext<Context>({
   ShowPreviewModel:false,
   AllColumns:columns,
   AllTasks:tasks,
+  ActiveEditTaskId:null,
   setAllTasks:()=>{},
+  setShowEditModel:()=>{},
+  setActiveEditTaskId:()=>{},
   addTask:(x,y)=>{},
-  deleteTask:(x)=>{}
+  deleteTask:(x)=>{},
+  EditTask:(x,y)=>{},
 })
   
   type PropsWrapper = {
-    children:JSX.Element
+    children:ReactNode
   }
-  type UseContextProps={}
-
- 
-  
   const ContextWrapper = ({children}: PropsWrapper) => {
     const [ShowEditModel, setShowEditModel] = useState(false)
+    const [ActiveEditTaskId, setActiveEditTaskId] = useState<string | null>(null)
     const [ShowPreviewModel, setShowPreviewModel] = useState(false)
    const [AllColumns, setAllColumns] = useState<Column[]>(columns)
    const [AllTasks, setAllTasks] = useState<Task[]>(tasks)
@@ -75,7 +76,11 @@ const context=createContext<Context>({
      return tasks.filter((t)=>t.id!=id)
     })
    }
-    const sharedState={ShowEditModel,ShowPreviewModel,AllColumns,AllTasks,setAllTasks,addTask,deleteTask}
+   function EditTask(id:string,newContent:string){
+    setShowEditModel(true)
+    setActiveEditTaskId(id)
+   }
+    const sharedState={ShowEditModel,ShowPreviewModel,AllColumns,AllTasks,ActiveEditTaskId,setAllTasks,addTask,deleteTask,EditTask,setShowEditModel,setActiveEditTaskId}
     return (
       <context.Provider value={sharedState} >{children}</context.Provider>
     )
