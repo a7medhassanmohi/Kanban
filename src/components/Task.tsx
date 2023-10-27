@@ -1,10 +1,17 @@
 import React from "react";
+import {CSS} from '@dnd-kit/utilities';
 
 import { BsTrash3 } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
-type Props = {};
+import { useSortable } from "@dnd-kit/sortable";
+type Props = {
+  id: Id;
+  columnId: Id;
+  content: string;
+};
 
 const Task = (props: Props) => {
+ 
   return (
     <div
       className="
@@ -19,9 +26,10 @@ const Task = (props: Props) => {
     border-columnBackgroundColor
     border-2
     flex  items-center
+   
     "
     >
-      <div className="content flex-1">task</div>
+      <div className="content flex-1">{props.content}</div>
       <div className="action  flex items-center gap-1">
         <div className="edit opacity-70 hover:opacity-100">
           <BsTrash3 size={15} />
